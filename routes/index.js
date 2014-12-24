@@ -60,6 +60,10 @@ module.exports = {
                 });
             });
 
+            /*
+            REST full routes
+             */
+            /*
             app.get('/api/binding', function(req, res) {
                 app.models.binding.find().exec(function(err, models) {
                     if (err){
@@ -107,6 +111,7 @@ module.exports = {
                     res.json(model);
                 });
             });
+            */
 
             resolve();
         });
