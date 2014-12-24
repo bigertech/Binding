@@ -1,0 +1,19 @@
+{
+  "name": "Binding",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "bluebird": "^2.4.2",
+    "body-parser": "~1.6.6",
+    "express": "~4.8.6",
+    "lodash": "*",
+    "multer": "0.1.4",
+    "mysql": "*",
+    "sails-disk": "^0.10.5",
+    "sails-mysql": "*",
+    "waterline": "*"
+  }
+}
