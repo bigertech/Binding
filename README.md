@@ -55,3 +55,7 @@ Binding
     "err": "订单编号已被绑定"
 }
 ```
+
+##路由测试
+
+`mocha test/test.js`

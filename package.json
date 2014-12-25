@@ -15,5 +15,10 @@
     "sails-disk": "^0.10.5",
     "sails-mysql": "*",
     "waterline": "*"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "should": "^4.4.1",
+    "supertest": "^0.15.0"
   }
 }

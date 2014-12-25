@@ -30,21 +30,21 @@ app.use(multer());
 var dataProvider = require("./models");
 
 // 初始化模型
-dataProvider().then(function (models) {
+module.exports = dataProvider().then(function (models) {
     app.models = models;
 
     // 初始化路由
     return routes.init(app);
-}).then(function () {
+}).then(function (app) {
 
     // 开启服务器
-    http.createServer(app).listen(app.get('port'),function(err){
+    app.listen(app.get('port'),function(err){
         if (err){
             console.log(err);
         }
         console.log('Express server listening on port ' + app.get('port'));
     });
+
+    return app;
 });
 
-
-module.exports = app;

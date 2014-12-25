@@ -31,12 +31,12 @@ module.exports = {
 
                     // 检测order_num 是否存在
                     if (!result){
-                        return res.status(500).json({err: '订单编号不存在'});
+                        throw '订单编号不存在';
                     }
 
                     // 检测order_num 是否已经被用了
                     if (result.isUsed || result.qq){
-                        return res.status(500).json({err: '订单编号已被绑定'});
+                        throw '订单编号已被绑定';
                     }
 
                     // 检测 QQ 是否已被绑定
@@ -45,7 +45,6 @@ module.exports = {
 
                     if (result){
                         throw 'QQ号已被绑定';
-                        return;
                     }
 
                     // 绑定QQ号码
@@ -63,15 +62,18 @@ module.exports = {
             /*
             REST full routes
              */
+
             /*
             app.get('/api/binding', function(req, res) {
                 app.models.binding.find().exec(function(err, models) {
                     if (err){
                         return res.status(500).json({err: err});
                     }
+                    console.log(models);
                     res.json(models);
                 });
             });
+
 
             app.post('/api/binding', function(req, res) {
                 app.models.binding.create(req.body, function(err, model) {
@@ -113,7 +115,7 @@ module.exports = {
             });
             */
 
-            resolve();
+            resolve(app);
         });
     }
 };
