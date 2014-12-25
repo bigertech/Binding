@@ -37,13 +37,17 @@ describe('Binding route test', function () {
 
     // 删除测试数据
     after(function (done) {
-        app.models.binding.destroy({id: preData[0].id}).then(function (result) {
-            return app.models.binding.destroy({id: preData[1].id});
-        }).then(function () {
+
+        var destroyBinding = [];
+
+        preData.forEach(function (binding) {
+            destroyBinding.push(binding.id);
+        });
+
+        app.models.binding.destroy(destroyBinding).then(function (result) {
             done();
         }).catch(function (err) {
-            console.log(err);
-            done();
+            done(err);
         });
     });
 
