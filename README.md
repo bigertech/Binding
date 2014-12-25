@@ -4,7 +4,7 @@ Binding
 ##数据库配置
 > /config.js
 
-修改以下数据库配置，并确保databa与你的数据库名字相同
+修改以下数据库配置，并确保database与你的数据库名字相同
 
 ```
   connections: {
