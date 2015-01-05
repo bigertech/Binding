@@ -59,6 +59,11 @@ function binding() {
                 alert('恭喜您，您的QQ号已经登记成功，稍后会有工作人员给您发放QQ黄钻特权，添加微信号：bigertech，发奖第一时间告诉你。');
                 return false;
             }
+            if (parseInt(result.remain)){
+                $('#remainMessage').text('(您的订单号还能领取 '+ result.remain +' 次)');
+            }else{
+                $('#remainMessage').text('');
+            }
             showMask("1");
         }else{
             if (isIE()) {

@@ -22,7 +22,8 @@ module.exports = {
                 var order_num    = req.body.order_num ? req.body.order_num.trim() : null,
                     qq           = req.body.qq ? req.body.qq.trim() : null,
                     orderRecords = {},
-                    orderUnusedIndex;
+                    orderUnusedIndex,
+                    orderRemain;
 
                 // 检测数据完整性
                 if (!order_num || !qq){
@@ -43,10 +44,11 @@ module.exports = {
                     for (var i = 0; i < orderRecords.length; i++) {
                         if (!orderRecords[i].isUsed || !orderRecords[i].qq){
                             orderUnusedIndex = i;
+                            orderRemain = orderRecords.length - (i+1);
                             break;
                         }
                         if (i == orderRecords.length - 1){
-                            throw '订单编号已被绑定';
+                            throw '该订单号已领取过';
                         }
                     }
 
@@ -55,7 +57,7 @@ module.exports = {
                 }).then(function (result) {
 
                     if (result){
-                        throw 'QQ号已被绑定';
+                        throw '该QQ号已领取过';
                     }
 
                     // 绑定QQ号码
@@ -63,8 +65,8 @@ module.exports = {
 
                 }).then(function (result) {
                     res.json({
-                        status  : 'success',
-                        binding : result
+                        status : 'success',
+                        remain : orderRemain
                     });
                 }).catch(function (err) {
                     if (err){
