@@ -36,7 +36,7 @@ module.exports = {
                     orderRecords = result;
 
                     // 检测order_num 是否存在
-                    if (!orderRecords){
+                    if (_.isEmpty(orderRecords)){
                         throw '订单编号不存在';
                     }
 
