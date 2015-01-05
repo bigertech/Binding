@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>领取QQ空间黄钻</title>
+  <meta name="viewport" content="width=device-width height=device-height, initial-scale=1.0 user-scalable=no">
+  <meta http-equiv="Cache-Control" content="max-age=7200" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="keyword" content="魅蓝，抽奖，QQ空间，黄钻手机节，算法">
+  <meta name="description" content="魅蓝公开抽奖算法">
+  <meta name="bigertech" content="bigertech@foxmail.com">
+
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+  <!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser.
+  Please <a href="http://browsehappy.com/">upgrade your browser</a>
+  to improve your experience.</p>
+<![endif]-->
+
+  <div id="main">
+    <div class="container">
+      <div id="title">
+        <p class="title">领取QQ空间黄钻</p>
+        <p class="title2">快来领取属于你的黄钻</p>
+      </div>
+
+      <form role="form" class="form">
+        <input type="text" id="orderNumInput" name="orderNumInput" class="form-control input-number" placeholder="请输入你的京东订单号">
+
+        <input type="text" id="qqInput" name="qqInput" class="form-control input-number" placeholder="请输入你的QQ号">
+        <div id="commitButton" class="form-control btn-commit">确&nbsp;&nbsp;定</div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="modal modal-succeed" >
+
+  </div>
+
+  <div class="modal modal-succeed" style="display: none">
+    <div class="modal-bg"></div>
+    <div class="modal-main">
+      <div class="modal-container modal-container-succed">
+        <div class="modal-success-main">
+          <span class="text-succeed good">恭喜您，您的QQ号已经登记成功</span>
+          <span class="text-succeed text-succeed2">稍后会有工作人员给您发放QQ黄钻特权</span>
+          <span class="text-atten attention">添加微信号：bigertech，发奖第一时间告诉你</span>
+          <span class="text-atten-sm">添加微信号：bigertech，发奖第一时间告诉你</span>
+        </div>
+      </div>
+      <img class="close" src="assets/images/close.png">
+    </div>
+  </div>
+
+  <div class="modal modal-failed" style="display: none">
+    <div class="modal-bg"></div>
+    <div class="modal-main">
+      <div class="modal-container">
+        <div class="modal-failed-main">
+          <img src="assets/images/qrcode.jpg" class="qrcode">
+          <div class="failed">
+
+            <span id="failMessage" class="text-atten text-atten-failed failed-small">少年，貌似没中奖</span>
+            <p class="text-atten text-atten-failed pc">微信扫扫二维码，</p>
+            <p class="text-atten text-atten-failed pc">或者添加微信号：bigertech</p>
+
+            <p class="text-atten text-atten-failed phone">添加下方微信号为好友</p>
+            <p class="weixin-code phone">bigertech</p>
+            <span class="text-failed">还有福利在那等你哦</span>
+
+          </div>
+        </div>
+      </div>
+      <img class="close" src="assets/images/close.png">
+    </div>
+  </div>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var b = document.createElement("script");
+      b.src = "//hm.baidu.com/hm.js?897c5e90b15f7f050e35c66b6978bd2c";
+      var a = document.getElementsByTagName("script")[0];
+      a.parentNode.insertBefore(b, a)
+    })();
+  </script>
+</body>
+
+</html>

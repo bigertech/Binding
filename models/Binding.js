@@ -15,7 +15,7 @@ var Binding = Waterline.Collection.extend({
     connection  : 'myLocalMySql',
 
     attributes: {
-        order_num   : {type: 'string', unique: true, numeric: true},
+        order_num   : {type: 'string', numeric: true},
         qq          : {type: 'string', unique: true, numeric: true},
         isUsed      : {type: 'boolean', defaultsTo : false}
     }

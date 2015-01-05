@@ -7,7 +7,8 @@
  *
  */
 
-var Promise = require("bluebird");
+var Promise = require("bluebird"),
+    _       = require("lodash");
 
 module.exports = {
     init: function (app) {
@@ -18,8 +19,10 @@ module.exports = {
              * 绑定订单号和QQ号
              */
             app.post('/binding', function (req, res) {
-                var order_num   = req.body.order_num ? req.body.order_num.trim() : null,
-                    qq          = req.body.qq ? req.body.qq.trim() : null;
+                var order_num    = req.body.order_num ? req.body.order_num.trim() : null,
+                    qq           = req.body.qq ? req.body.qq.trim() : null,
+                    orderRecords = {},
+                    orderUnusedIndex;
 
                 // 检测数据完整性
                 if (!order_num || !qq){
@@ -27,16 +30,24 @@ module.exports = {
                 }
 
                 // 查询binding
-                app.models.binding.findOne({order_num: order_num}).then(function (result) {
+                app.models.binding.find({order_num: order_num}).then(function (result) {
+
+                    orderRecords = result;
 
                     // 检测order_num 是否存在
-                    if (!result){
+                    if (!orderRecords){
                         throw '订单编号不存在';
                     }
 
-                    // 检测order_num 是否已经被用了
-                    if (result.isUsed || result.qq){
-                        throw '订单编号已被绑定';
+                    // 检测order_num 是否已经被用完，并给出当前还没用的索引
+                    for (var i = 0; i < orderRecords.length; i++) {
+                        if (!orderRecords[i].isUsed || !orderRecords[i].qq){
+                            orderUnusedIndex = i;
+                            break;
+                        }
+                        if (i == orderRecords.length - 1){
+                            throw '订单编号已被绑定';
+                        }
                     }
 
                     // 检测 QQ 是否已被绑定
@@ -48,21 +59,42 @@ module.exports = {
                     }
 
                     // 绑定QQ号码
-                    return app.models.binding.update({order_num: order_num},{qq: qq, isUsed: true});
+                    return app.models.binding.update({id:orderRecords[orderUnusedIndex].id},{qq: qq, isUsed: true});
 
                 }).then(function (result) {
-                    res.json(result);
+                    res.json({
+                        status  : 'success',
+                        binding : result
+                    });
                 }).catch(function (err) {
                     if (err){
-                        res.status(500).json({err: err});
+                        res.json({
+                            status  : 'error',
+                            message : err
+                        });
                     }
+                });
+            });
+
+            /**
+             * 获取绑定的QQ号码
+             */
+            app.get('/getBindedQQ', function (req, res) {
+                app.models.binding.find({isUsed:1}).then(function (result) {
+                    var qqArray = [];
+                    _.forEach(result, function (binding) {
+                        qqArray.push(binding.qq);
+                    });
+                    res.json(qqArray);
+                }).catch(function (err) {
+                    res.status(500).json({err: err});
+                    console.log(err);
                 });
             });
 
             /*
             REST full routes
              */
-
             /*
             app.get('/api/binding', function(req, res) {
                 app.models.binding.find().exec(function(err, models) {
