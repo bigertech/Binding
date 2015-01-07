@@ -81,7 +81,7 @@ module.exports = {
             /**
              * 获取绑定的QQ号码
              */
-            app.get('/getBindedQQ', function (req, res) {
+            app.get('/list', function (req, res) {
                 app.models.binding.find({isUsed:1}).then(function (result) {
                     var qqArray = [];
                     _.forEach(result, function (binding) {
